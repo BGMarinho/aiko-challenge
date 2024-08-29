@@ -17,7 +17,8 @@
   font-size: 0.75rem;
 }
 
-a {
+.information > span > a {
   all: unset;
   color: #8bc0f7;
+  cursor: pointer;
 }

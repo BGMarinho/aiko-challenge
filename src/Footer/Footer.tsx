@@ -5,7 +5,10 @@ export default function Footer() {
     <section className="footer-wrapper">
       <div className="informetion">
         <span>
-          Copyright © 2024 <a href="https://github.com/BGMarinho">BGMarinho</a>
+          Copyright © 2024{' '}
+          <a href="https://github.com/BGMarinho" target="_blank">
+            BGMarinho
+          </a>
           . Todos os direitos reservados.
         </span>
       </div>
