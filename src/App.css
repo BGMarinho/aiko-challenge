@@ -1,3 +1,10 @@
 #map {
-  height: 1080;
+  height: 100%;
+} /* Never remove. */
+
+.map-container {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+  overflow-y: hidden;
 }

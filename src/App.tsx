@@ -1,14 +1,18 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import Aiko from '../img/aiko.png';
+import Aiko from '../images/aiko.png';
 import Footer from './Footer';
 import './App.css';
 
 export default function App() {
   return (
-    <div id="map-container">
-      <img id="aiko-logo" src={Aiko} alt="aiko-logo" />
-      <MapContainer center={[51.505, -0.09]} zoom={10} scrollWheelZoom={false}>
+    <div className="map-container">
+      <img className="aiko-logo" src={Aiko} alt="aiko-logo" />
+      <MapContainer
+        className="map"
+        center={[51.505, -0.09]}
+        zoom={10}
+        scrollWheelZoom={false}
+      >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
