@@ -1,4 +1,3 @@
-// import Equipment from '../data/equipment.json';
 import { getEquipmentsLastPositions } from '../hooks/useEquipment.ts';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import Aiko from '../images/aiko.png';
@@ -7,14 +6,12 @@ import './App.css';
 
 export default function App() {
   const equipments = getEquipmentsLastPositions();
-  console.log(equipments);
-
   return (
     <div className="map-container">
       <img className="aiko-logo" src={Aiko} alt="aiko-logo" />
       <MapContainer
         className="map"
-        center={[51.505, -0.09]}
+        center={[-19.126536, -45.947756]}
         zoom={10}
         scrollWheelZoom={true}
       >
