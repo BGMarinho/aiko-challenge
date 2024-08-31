@@ -1,11 +1,15 @@
-import { getEquipmentsLastPositions } from '../hooks/useEquipment.ts';
+import {
+  getLastPositionPerEquipment,
+  getEquipmentName,
+  getEquipmentCurrentState,
+} from '../hooks/useEquipment.ts';
+import EquipmentPositionHistory from '../data/equipmentPositionHistory.json';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import Aiko from '../images/aiko.png';
 import Footer from './Footer';
 import './App.css';
 
 export default function App() {
-  const equipments = getEquipmentsLastPositions();
   return (
     <div className="map-container">
       <img className="aiko-logo" src={Aiko} alt="aiko-logo" />
@@ -19,14 +23,22 @@ export default function App() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {equipments.map((equipmentLastPosition, index) => {
+        {EquipmentPositionHistory.map((positionedEquipment, index) => {
           return (
             <Marker
               key={index}
-              position={[equipmentLastPosition.lat, equipmentLastPosition.lon]}
+              position={getLastPositionPerEquipment(
+                positionedEquipment.positions,
+              )}
+              // icon={}
             >
               <Popup>
-                teste linha 1 <br /> teste linha 2
+                {getEquipmentName(positionedEquipment.equipmentId)?.name}
+                <br />
+                {
+                  getEquipmentCurrentState(positionedEquipment.equipmentId)
+                    ?.name
+                }
               </Popup>
             </Marker>
           );
