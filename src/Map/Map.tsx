@@ -5,9 +5,12 @@ import {
 } from '../../hooks/useEquipment';
 import EquipmentPositionHistory from '../../data/equipmentPositionHistory.json';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { useState } from 'react';
 import './styles.css';
 
 export default function Map() {
+  const [showStateHistory, setShowStateHistory] = useState(false);
+
   return (
     <MapContainer
       className="map"
@@ -29,9 +32,26 @@ export default function Map() {
             // icon={}
           >
             <Popup>
-              {getEquipmentName(positionedEquipment.equipmentId)?.name}
-              <br />
-              {getEquipmentCurrentState(positionedEquipment.equipmentId)?.name}
+              <div className="popup-info-container">
+                <span>
+                  <b>Nome:</b>{' '}
+                  {getEquipmentName(positionedEquipment.equipmentId)?.name}
+                </span>
+                <span>
+                  <b>Status:</b>{' '}
+                  {
+                    getEquipmentCurrentState(positionedEquipment.equipmentId)
+                      ?.name
+                  }
+                </span>
+              </div>
+              <button
+                id="state-history-button"
+                onClick={() => setShowStateHistory(!showStateHistory)}
+              >
+                <i>Histórico de estados</i>
+              </button>
+              {showStateHistory && <div>detalhes</div>}
             </Popup>
           </Marker>
         );
