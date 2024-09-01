@@ -31,9 +31,9 @@ export function getEquipmentCurrentState(equipmentId: string) {
   });
 
   function getStateName(stateId: string | undefined) {
-    const stateName = EquipmentState.find((equipment) => {
-      if (equipment.id === stateId) {
-        return equipment;
+    const stateName = EquipmentState.find((equipmentStateObj) => {
+      if (equipmentStateObj.id === stateId) {
+        return equipmentStateObj;
       }
     });
     return stateName;
