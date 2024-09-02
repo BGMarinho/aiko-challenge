@@ -4,5 +4,5 @@ export function getEquipmentName(equipmentId: string) {
   const [equipmentObj] = Equipments.filter(
     (equipment) => equipment.id === equipmentId,
   );
-  return equipmentObj;
+  return equipmentObj.name;
 }

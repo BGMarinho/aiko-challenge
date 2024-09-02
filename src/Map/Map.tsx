@@ -21,6 +21,7 @@ export default function Map() {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       {EquipmentPositionHistory.map((positionedEquipment, index) => {
+        // console.log('equipamento object: ', positionedEquipment.equipmentId);
         return (
           <Marker
             key={index}
@@ -33,14 +34,11 @@ export default function Map() {
               <div className="popup-info-container">
                 <span>
                   <b>Nome:</b>{' '}
-                  {getEquipmentName(positionedEquipment.equipmentId)?.name}
+                  {getEquipmentName(positionedEquipment.equipmentId)}
                 </span>
                 <span>
                   <b>Status:</b>{' '}
-                  {
-                    getEquipmentCurrentState(positionedEquipment.equipmentId)
-                      ?.name
-                  }
+                  {getEquipmentCurrentState(positionedEquipment.equipmentId)}
                 </span>
               </div>
               <button

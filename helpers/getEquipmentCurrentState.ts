@@ -3,23 +3,22 @@ import EquipmentStateHistory from '../data/equipmentStateHistory.json';
 
 export function getEquipmentCurrentState(equipmentId: string) {
   const [equipmentStates] = EquipmentStateHistory.filter((equipment) => {
-    equipment.equipmentId === equipmentId;
+    if (equipment.equipmentId === equipmentId) return equipment;
   });
 
   function getStateName(stateId: string | undefined) {
-    // console.log('estado que chegou na função', stateId);
-    const [stateName] = EquipmentState.filter((equipmentStateObj) => {
-      equipmentStateObj.id === stateId;
+    const stateNameObj = EquipmentState.filter((equipmentStateObj) => {
+      if (equipmentStateObj.id === stateId) return equipmentStateObj;
     });
-    return stateName;
+    console.log('stateName: ', stateNameObj);
+    return stateNameObj[0];
   }
 
-  // console.log('obj que chegou: ', equipmentStates);
   const stateName = getStateName(
     equipmentStates?.states[equipmentStates.states.length - 1].equipmentStateId,
   );
 
-  return stateName;
+  return stateName.name;
 }
 
 // console.log('EquipmenState: ', EquipmentState);
