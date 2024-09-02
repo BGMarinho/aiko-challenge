@@ -2,13 +2,14 @@ import EquipmentPositionHistory from '../../data/equipmentPositionHistory.json';
 import { getLastPositionPerEquipment } from '../../helpers/getLastPositionPerEquipment';
 import { getEquipmentName } from '../../helpers/getEquipmentName';
 import { getEquipmentCurrentState } from '../../helpers/getEquipmentCurrentState';
+import { getLastThreeStatesPerEquipment } from '../../helpers/getLastThreeStatesPerEquipment';
+import { getStateObj } from '../../helpers/getStateObj';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { useState } from 'react';
 import './styles.css';
 
 export default function Map() {
   const [showStateHistory, setShowStateHistory] = useState(false);
-
   return (
     <MapContainer
       className="map"
@@ -38,7 +39,10 @@ export default function Map() {
                 </span>
                 <span>
                   <b>Status:</b>{' '}
-                  {getEquipmentCurrentState(positionedEquipment.equipmentId)}
+                  {
+                    getEquipmentCurrentState(positionedEquipment.equipmentId)
+                      .name
+                  }
                 </span>
               </div>
               <button
@@ -47,7 +51,21 @@ export default function Map() {
               >
                 <i>Histórico de estados</i>
               </button>
-              {showStateHistory && <div>detalhes</div>}
+              {showStateHistory && (
+                <div className="state-history-container" key={index}>
+                  {getLastThreeStatesPerEquipment(
+                    positionedEquipment.equipmentId,
+                  ).map((equipmentState, key) => {
+                    console.log('equipmentState: ', equipmentState);
+                    return (
+                      <span key={key}>
+                        {getStateObj(equipmentState.equipmentStateId).name}, em{' '}
+                        {equipmentState.date.slice(0, 10)}
+                      </span>
+                    );
+                  })}
+                </div>
+              )}
             </Popup>
           </Marker>
         );
