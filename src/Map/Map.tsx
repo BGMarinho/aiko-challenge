@@ -1,9 +1,7 @@
-import {
-  getLastPositionPerEquipment,
-  getEquipmentName,
-  getEquipmentCurrentState,
-} from '../../helpers/equipment';
 import EquipmentPositionHistory from '../../data/equipmentPositionHistory.json';
+import { getLastPositionPerEquipment } from '../../helpers/getLastPositionPerEquipment';
+import { getEquipmentName } from '../../helpers/getEquipmentName';
+import { getEquipmentCurrentState } from '../../helpers/getEquipmentCurrentState';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { useState } from 'react';
 import './styles.css';
